@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-breadcrumbs',
+  selector: 'breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styles: []
 })

@@ -1,3 +1,33 @@
-<p>
-  graphics1 works!
-</p>
+<div class="row">
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+              <donut-chart [titleReceived]="graficos.grafico1.leyenda" [labelsReceived]="graficos.grafico1.labels" [dataReceived]="graficos.grafico1.data" ></donut-chart> 
+          </div>
+      </div>
+  </div>
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+              <donut-chart [titleReceived]="graficos.grafico2.leyenda" [labelsReceived]="graficos.grafico2.labels" [dataReceived]="graficos.grafico2.data" ></donut-chart> 
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+              <donut-chart [titleReceived]="graficos.grafico3.leyenda" [labelsReceived]="graficos.grafico3.labels" [dataReceived]="graficos.grafico3.data" ></donut-chart> 
+          </div>
+      </div>
+  </div>
+  <div class="col-6">
+      <div class="card">
+          <div class="card-body">
+              <donut-chart [titleReceived]="graficos.grafico4.leyenda" [labelsReceived]="graficos.grafico4.labels" [dataReceived]="graficos.grafico4.data" ></donut-chart> 
+          </div>
+      </div>
+  </div>
+</div>
