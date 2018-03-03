@@ -5,7 +5,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'account-settings',
+  selector: 'page-account-settings',
   templateUrl: './account-settings.component.html',
   styles: []
 })

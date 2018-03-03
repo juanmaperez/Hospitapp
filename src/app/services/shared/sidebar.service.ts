@@ -17,15 +17,6 @@ export class SidebarService {
     {
       title: 'Graphics',
       url: '/graphics'
-    }
-    ,
-    {
-      title: 'Progress Bar',
-      url: '/progress'
-    },
-    {
-      title: 'Graphics',
-      url: '/graphics'
     }]
   }];
 
