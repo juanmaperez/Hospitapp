@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 
 import { PagesModule } from './pages/pages.module';
+import { ServicesModule } from './services/services.module';
+
 
 import { APP_ROUTES } from './app.routes';
 
@@ -25,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     APP_ROUTES,
     PagesModule,
     FormsModule,
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
