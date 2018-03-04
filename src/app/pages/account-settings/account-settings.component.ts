@@ -17,10 +17,10 @@ export class AccountSettingsComponent implements OnInit {
     this.checkTheme();
   }
 
-  changeColor (link: string, theme: any): void {
-    const selectors = document.getElementsByClassName('selector');
+  changeColor (link: any, theme: any): void {
+    const selectors: any = document.getElementsByClassName('selector');
 
-    for (let ref of selectors) {
+    for (const ref of selectors) {
         ref.classList.remove('working');
     }
 
@@ -31,10 +31,10 @@ export class AccountSettingsComponent implements OnInit {
 
 
   checkTheme() {
-    const selectors = document.getElementsByClassName('selector');
+    const selectors: any = document.getElementsByClassName('selector');
     const theme = this._settings.settings.theme;
 
-    for (let ref of selectors) {
+    for (const ref of selectors) {
       if ( ref.getAttribute('data-theme') === theme) {
         ref.classList.add('working');
       }
