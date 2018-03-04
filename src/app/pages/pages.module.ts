@@ -19,6 +19,8 @@ import { ChartsModule } from 'ng2-charts';
 import { IncrementatorComponent } from '../components/incrementator/incrementator.component';
 import { DonutChartComponent } from '../components/donut-chart/donut-chart.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PagePromisesComponent } from './page-promises/page-promises.component';
+import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         Graphics1Component,
         IncrementatorComponent,
         DonutChartComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PagePromisesComponent,
+        PageRxjsComponent
     ],
     exports: [
         DashboardComponent,
