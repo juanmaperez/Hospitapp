@@ -8,11 +8,13 @@ import { Graphics1Component } from './graphics1/graphics1.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
+import { AuthGuard } from './../services/services.index';
 
 const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
+        canActivate: [ AuthGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
             { path: 'graphics', component: Graphics1Component, data: {title: 'Graphics'}},

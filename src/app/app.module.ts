@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,11 +23,12 @@ import { FormsModule } from '@angular/forms';
     RegisterComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     APP_ROUTES,
     PagesModule,
     FormsModule,
-    ServicesModule
+    ServicesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
