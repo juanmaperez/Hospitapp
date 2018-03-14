@@ -52,6 +52,7 @@ export class UserService {
     return this.http.post(url, {})
     .map((res: any) => {
       this.saveStorage( res.id, res.token, res.user);
+      this.user = res.user;
       return true;
     });
   }
@@ -66,6 +67,9 @@ export class UserService {
   }
 
   isLoggedIn() {
+    this.token = localStorage.getItem('token');
+    this.user = JSON.parse(localStorage.getItem('user'));
+
     return (!!this.token) ? true : false;
   }
 
