@@ -5,19 +5,19 @@
             <div class="card-body">
                 <h4 class="card-title">Sample Form with the Icons</h4>
                 <h6 class="card-subtitle">made with bootstrap elements</h6>
-                <form class="form p-t-20">
+                <form #form="ngForm" (ngSubmit)="updateUser(form.value)" ngNativeValidate class="form p-t-20">
                     <div class="form-group">
                         <label for="exampleInputuname">User Name</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input type="text" class="form-control" id="exampleInputuname" placeholder="Username">
+                            <input [ngModel]="user.name" type="text" name="name" class="form-control" id="exampleInputuname" placeholder="Username" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-email"></i></div>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <input [ngModel]="user.email" [disabled]="user.google" type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
                         </div>
                     </div>
                     
@@ -33,10 +33,10 @@
                 <h6 class="card-subtitle">User Name</h6>
                   <img src="">
                   
-                  <input class="form-control" type="file">
+                  <input (change)="addImage($event.target.files[0])" class="form-control" type="file">
                   <br>
                   <br>
-                  <button type="submit" class="btn btn-block btn-success waves-effect waves-light m-r-10">Submit</button>
+                  <button (click)="uploadImage()" type="submit" [disabled]="!file" class="btn btn-block btn-success waves-effect waves-light m-r-10">Submit</button>
             </div>
         </div>
     </div>

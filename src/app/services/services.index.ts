@@ -1,3 +1,4 @@
+export { UploadFileService } from './upload-file/upload-file.service';
 export { AuthGuard } from './guards/authguard.guard';
 export { SidebarService } from './shared/sidebar.service';
 export { SharedService } from './shared/shared.service';

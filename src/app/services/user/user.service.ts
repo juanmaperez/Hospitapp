@@ -1,7 +1,7 @@
+import { URL_SERVER } from './../../config/config';
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { URL_SERVER } from '../../config/config';
 
 import swal from 'sweetalert2';
 
@@ -41,8 +41,8 @@ export class UserService {
     const url = `${this.basicUrl}/login`;
     return this.http.post(url, user)
       .map((res: any) => {
-        this.saveStorage( res.id, res.token, res.user);
-
+        this.user = res.user;
+        this.saveStorage( res.id, this.user, res.token);
       });
   }
 
@@ -51,16 +51,18 @@ export class UserService {
 
     return this.http.post(url, {})
     .map((res: any) => {
-      this.saveStorage( res.id, res.token, res.user);
       this.user = res.user;
+      this.saveStorage( res.id, this.user, res.token);
       return true;
     });
   }
 
-  saveStorage( id: string, token: string, user: User) {
+  saveStorage( id: string, user: User, token?: string) {
     localStorage.setItem('id', id);
-    localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    if (token) {
+    localStorage.setItem('token', token);
+    }
 
     this.user = user;
     this.token = token;
@@ -81,6 +83,17 @@ export class UserService {
     localStorage.removeItem('user');
 
     this.router.navigate(['/login']);
+  }
+
+  updateUser(user: User) {
+    const url = `${URL_SERVER}/users/${user._id}`;
+
+    return this.http.put(url, user)
+      .map((res: any) => {
+      this.user = res.user;
+      this.saveStorage( this.user._id, this.user);
+        swal('Cool', 'User updated successfully', 'success');
+      });
   }
 
 }

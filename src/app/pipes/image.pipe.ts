@@ -7,7 +7,7 @@ import { URL_SERVER } from '../config/config';
 })
 export class ImagePipe implements PipeTransform {
 
-  transform(image: string, type: string = 'users'): any {
+  transform(image: string, collection: string = 'users'): any {
 
     let url = URL_SERVER + '/images';
 
@@ -18,7 +18,7 @@ export class ImagePipe implements PipeTransform {
       return image;
     }
 
-    switch (type) {
+    switch (collection) {
       case 'users':
         url += `/users/${ image }`;
       break;
@@ -31,7 +31,7 @@ export class ImagePipe implements PipeTransform {
       break;
 
       default:
-      console.log(`This type ${type} not exists`);
+      console.log(`This type ${collection} not exists`);
         url += '/users/xxx';
     }
     return url;

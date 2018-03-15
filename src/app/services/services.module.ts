@@ -11,7 +11,8 @@ import {
   SidebarService,
   SharedService,
   UserService,
-  AuthGuard } from './services.index';
+  AuthGuard,
+  UploadFileService, } from './services.index';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {
     SharedService,
     UserService,
     AuthGuard,
+    UploadFileService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
