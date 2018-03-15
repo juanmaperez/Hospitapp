@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   user: User;
 
   file: File;
+  fileImageUrl: string;
 
   constructor(
     public _userService: UserService,
@@ -38,17 +39,37 @@ export class ProfileComponent implements OnInit {
 
   addImage( file: File) {
     if (! file) {
+      this.file = null;
       return;
     }
+
+    if ( file.type.indexOf('image') < 0) {
+      swal('Error', 'Type not allowed', 'error');
+      return;
+    }
+
+    const reader = new FileReader();
+    const imageTemp = reader.readAsDataURL(file);
+
+    reader.onloadend = () => this.fileImageUrl = reader.result;
+
     this.file = file;
   }
 
   uploadImage() {
     this._uploader.uploadFile(this.file, 'users', this.user._id)
-      .subscribe((res) => {
-        console.log(res);
-        }
-      );
+      .subscribe(
+        (res: any) => {
+          this.user.img = res.info.user.img;
+
+          this.updateUser(this.user);
+
+          swal( res.title, res.message, res.result);
+
+        },
+        err => swal( err.title, err.message, err.result),
+        () => { }
+    );
   }
 
 }

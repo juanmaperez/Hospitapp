@@ -25,6 +25,8 @@ import { PagePromisesComponent } from './page-promises/page-promises.component';
 import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
     declarations: [
@@ -49,7 +51,9 @@ import { ProfileComponent } from './profile/profile.component';
         SharedModule,
         FormsModule,
         ChartsModule,
-        PipesModule
+        PipesModule,
+        CommonModule,
+
     ]
 })
 

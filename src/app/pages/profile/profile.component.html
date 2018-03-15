@@ -3,7 +3,7 @@
     <div class="col-lg-7">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Sample Form with the Icons</h4>
+                <h4 class="card-title">Main user information</h4>
                 <h6 class="card-subtitle">made with bootstrap elements</h6>
                 <form #form="ngForm" (ngSubmit)="updateUser(form.value)" ngNativeValidate class="form p-t-20">
                     <div class="form-group">
@@ -30,8 +30,13 @@
         <div class="card">
             <div class="card-body"> 
                 <h4 class="card-title">Profile Image</h4>
-                <h6 class="card-subtitle">User Name</h6>
-                  <img src="">
+                <h6 class="card-subtitle">{{ user.name }}</h6>
+                    <img *ngIf="!file; else noFile" style="width:100%" [src]="user.img | image" alt="user profile">
+                    <ng-template #noFile>
+                        <img style="max-width:100%" [src]="fileImageUrl" alt="user profile">
+                    </ng-template>
+                  <br>
+                  <br>
                   
                   <input (change)="addImage($event.target.files[0])" class="form-control" type="file">
                   <br>

@@ -10,7 +10,7 @@ export class UploadFileService {
 
   uploadFile( file: File, collection: string, id: string) {
 
-    return new Observable(() => {
+    return new Observable((observer): any => {
       const formData = new FormData();
       const xhr = new XMLHttpRequest();
 
@@ -19,9 +19,10 @@ export class UploadFileService {
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            return 'Image uploaded successfully';
+            observer.next({title: 'Great!', message: 'File uploaded successfully', result: 'success', info: JSON.parse(xhr.response)});
+            observer.complete();
           } else {
-            return 'Error uploading image';
+            observer.error({title: 'Oohh!', message: 'Something went wrong', result: 'warning', info: JSON.parse(xhr.response)});
           }
         }
       };
