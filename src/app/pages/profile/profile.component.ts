@@ -12,6 +12,10 @@ import { User } from '../../models/user.model';
   styles: []
 })
 export class ProfileComponent implements OnInit {
+  /* This function
+  * @return {}
+  * @params:
+  */
 
   user: User;
 
@@ -28,6 +32,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  /* This function calls to the profile service and updates its properties
+  * @params: File
+  * @return: void()
+  */
   updateUser(user: User) {
     this.user.name = user.name;
     if ( !this.user.google ) {
@@ -37,6 +45,10 @@ export class ProfileComponent implements OnInit {
       .subscribe();
   }
 
+  /* This function adds an image in the preview
+  * @params: File
+  * @return: void()
+  */
   addImage( file: File) {
     if (! file) {
       this.file = null;
@@ -56,6 +68,9 @@ export class ProfileComponent implements OnInit {
     this.file = file;
   }
 
+  /* This function connects with the uploader service and uploads the image in the preview
+  * @return: void()
+  */
   uploadImage() {
     this._uploader.uploadFile(this.file, 'users', this.user._id)
       .subscribe(

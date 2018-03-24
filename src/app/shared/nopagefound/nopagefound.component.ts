@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+// function to initialize plugins which are out of Angular in this case from custom.min.js
+declare function init_plugins();
+
 @Component({
-  selector: 'nopagefound',
+  selector: 'page-nopagefound',
   templateUrl: './nopagefound.component.html',
   styles: []
 })
@@ -10,6 +13,7 @@ export class NopagefoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    init_plugins();
   }
 
 }

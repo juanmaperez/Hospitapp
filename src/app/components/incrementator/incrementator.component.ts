@@ -7,10 +7,10 @@ import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef} 
 })
 export class IncrementatorComponent implements OnInit {
 
-  @Input() progress: Number = 50;
-  @Input() title: String = 'Title';
+  @Input() progress: number = 50;
+  @Input() title: string = 'Title';
 
-  @Output() increment: EventEmitter<Number> = new EventEmitter();
+  @Output() increment: EventEmitter<number> = new EventEmitter();
 
   @ViewChild('inputProgress') inputProgress: ElementRef;
 
@@ -19,7 +19,7 @@ export class IncrementatorComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChanges(value: Number) {
+  onChanges(value: number) {
 
     if (value >= 100) {
       this.progress = 100;

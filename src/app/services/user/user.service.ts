@@ -7,11 +7,13 @@ import swal from 'sweetalert2';
 
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
 
   user: User;
+
   token: string;
 
   basicUrl = URL_SERVER;
@@ -21,6 +23,10 @@ export class UserService {
     public router: Router
   ) { }
 
+  /* This function creates a new user through the register page.
+  * @params: User
+  * @return: Observable
+  */
   createUser(user: User) {
     const url = `${this.basicUrl}/users`;
     return this.http.post(url, user)
@@ -30,7 +36,11 @@ export class UserService {
                 });
   }
 
-  login(user: User, rememberMe: Boolean = false) {
+   /* This logins the user through the login page.
+  * @params: User, boolean
+  * @return: Observable
+  */
+  login(user: User, rememberMe: boolean = false): Observable<boolean> {
 
     if (rememberMe) {
       localStorage.setItem('email', user.email);
@@ -43,10 +53,15 @@ export class UserService {
       .map((res: any) => {
         this.user = res.user;
         this.saveStorage( res.id, this.user, res.token);
+        return true;
       });
   }
 
-  loginGoogle(token) {
+  /* This logins the user through google api.
+  * @params: User, boolean
+  * @return: Observable
+  */
+  loginGoogle(token): Observable<boolean> {
     const url = `${URL_SERVER}/login/google`;
 
     return this.http.post(url, {})
@@ -57,6 +72,10 @@ export class UserService {
     });
   }
 
+  /*
+  * This functions save user data into the local storage.
+  * @params: id, User, token
+  */
   saveStorage( id: string, user: User, token?: string) {
     localStorage.setItem('id', id);
     localStorage.setItem('user', JSON.stringify(user));
@@ -68,14 +87,22 @@ export class UserService {
     this.token = token;
   }
 
-  isLoggedIn() {
+  /*
+  * This functions checks if the user is logged in.
+  * @return: boolean
+  */
+  isLoggedIn(): boolean {
+    console.log('checking...');
     this.token = localStorage.getItem('token');
     this.user = JSON.parse(localStorage.getItem('user'));
 
     return (!!this.token) ? true : false;
   }
 
-  logOut() {
+  /*
+  * This functions removes all info from localStorage and navigates to the login page.
+  */
+  logOut(): void {
     this.user = null;
     this.token = null;
     localStorage.removeItem('id');
@@ -85,15 +112,58 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  updateUser(user: User) {
+  /*
+  * This functions edits User.
+  * @params: User
+  * @return: Observable<boolean>
+  */
+  updateUser(user: User): Observable<boolean> {
     const url = `${URL_SERVER}/users/${user._id}`;
 
     return this.http.put(url, user)
       .map((res: any) => {
-      this.user = res.user;
-      this.saveStorage( this.user._id, this.user);
+        this.user = res.user;
+        this.saveStorage( this.user._id, this.user);
         swal('Cool', 'User updated successfully', 'success');
+        return true;
       });
+  }
+
+  /*
+  * This functions get all array of Users.
+  * @params: number
+  * @return: Observable<Users[]>
+  */
+  getUsers(from: number = 0) {
+    const url = `${URL_SERVER}/users?from=${from}`;
+
+    return this.http.get(url);
+  }
+
+  /*
+  * This functions to find Users by term.
+  * @params: term:string
+  * @return: Observable<Users[]>
+  */
+  getUsersByTerm(term: string) {
+    const url = `${URL_SERVER}/search/collection/users/${term}`;
+    return this.http.get(url);
+  }
+
+ /*
+  * This functions delete User.
+  * @params: term:string
+  * @return: Observable<Users[]>
+  */
+
+  deleteUser(id: string) {
+    if (this.user._id  === id) {
+      swal('Error deleting user', 'Delete your own user not allowed', 'warning');
+      return;
+    }
+
+    const url = `${URL_SERVER}/users/${id}`;
+    return this.http.delete(url);
   }
 
 }

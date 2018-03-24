@@ -17,6 +17,11 @@ export class AccountSettingsComponent implements OnInit {
     this.checkTheme();
   }
 
+  /*
+  * This functions applies the new theme color and removes the class active('working') from the others.
+  * @params: link(template reference variable), theme name
+  * @return: void
+  */
   changeColor (link: any, theme: any): void {
     const selectors: any = document.getElementsByClassName('selector');
 
@@ -28,9 +33,12 @@ export class AccountSettingsComponent implements OnInit {
     this._settings.applyTheme(theme);
   }
 
-
-
-  checkTheme() {
+ /*
+  * This function checks if exists a theme applied and and class working to this if it works.
+  * @params: link(template reference variable), theme name
+  * @return: void
+  */
+  checkTheme(): void {
     const selectors: any = document.getElementsByClassName('selector');
     const theme = this._settings.settings.theme;
 

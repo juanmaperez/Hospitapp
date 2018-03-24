@@ -1,3 +1,4 @@
+import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PagePromisesComponent } from './page-promises/page-promises.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,15 +16,19 @@ const pagesRoutes: Routes = [
     {
         path: '',
         component: PagesComponent,
-        canActivate: [ AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
             { path: 'graphics', component: Graphics1Component, data: {title: 'Graphics'}},
             { path: 'progress', component: ProgressComponent, data: {title: 'Progress'}},
             { path: 'account-settings', component: AccountSettingsComponent, data: {title: 'Account Settings'}},
-            { path: 'profile', component: ProfileComponent, data: {title: 'Profile'}},
             { path: 'promises', component: PagePromisesComponent, data: {title: 'Promises'}},
             { path: 'rxjs', component: PageRxjsComponent, data: {title: 'Rxjs'}},
+            { path: 'profile', component: ProfileComponent, data: {title: 'Profile'}},
+            // Maintenance
+            { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}},
+
+
             { path: '', redirectTo: '/', pathMatch: 'full'},
         ]
     }

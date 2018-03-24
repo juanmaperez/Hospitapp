@@ -7,6 +7,10 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor() {}
 
+  /* This function intercepts all the http request and add the token in header if they exist
+  * @params: HttpRequest, HttpHandler
+  * @return: Observable
+  */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const token = localStorage.getItem('token');

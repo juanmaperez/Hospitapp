@@ -8,7 +8,11 @@ export class UploadFileService {
 
   constructor() { }
 
-  uploadFile( file: File, collection: string, id: string) {
+  /* This function saves image into the database
+  * @params: receives the File, collection and the id
+  * @return: Observable
+  */
+  uploadFile( file: File, collection: string, id: string): Observable<any> {
 
     return new Observable((observer): any => {
       const formData = new FormData();

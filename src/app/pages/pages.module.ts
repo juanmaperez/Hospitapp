@@ -26,6 +26,7 @@ import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 
 import { CommonModule } from '@angular/common';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CommonModule } from '@angular/common';
         AccountSettingsComponent,
         PagePromisesComponent,
         PageRxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsersComponent
     ],
     exports: [
         DashboardComponent,

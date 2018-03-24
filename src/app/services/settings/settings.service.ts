@@ -12,10 +12,16 @@ export class SettingsService {
     this.getSettings();
   }
 
+  /*
+  * This function save settings in the local storage
+  */
   saveSettings() {
     localStorage.setItem('settings', JSON.stringify(this.settings));
   }
 
+  /*
+  * This function gets settings from the localStorage and applies them to the settings property
+  */
   getSettings() {
     if (localStorage.getItem('settings')) {
       this.settings = JSON.parse(localStorage.getItem('settings'));
@@ -23,6 +29,9 @@ export class SettingsService {
     this.applyTheme(this.settings.theme);
   }
 
+  /*
+  * This applies settings into the html through javascript document.
+  */
   applyTheme(theme) {
     const url = `assets/css/colors/${theme}.css`;
     document.getElementById('theme').setAttribute('href', url );

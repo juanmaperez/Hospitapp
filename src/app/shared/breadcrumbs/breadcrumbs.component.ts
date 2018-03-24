@@ -12,7 +12,7 @@ import { Title, Meta, MetaDefinition } from '@angular/platform-browser';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  label: String = '';
+  label: string = '';
 
   constructor(
     private router: Router,
@@ -34,7 +34,7 @@ export class BreadcrumbsComponent implements OnInit {
   ngOnInit() {
   }
 
-  getDataRoute(){
+  getDataRoute() {
     return this.router.events
     .filter(event => event instanceof ActivationEnd)
     .filter((event: ActivationEnd) => event.snapshot.firstChild === null)

@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressComponent implements OnInit {
 
-  progressB: Number = 20;
-  progressG: Number = 30;
+  progressB: number = 20;
+  progressG: number = 30;
 
   constructor() { }
 

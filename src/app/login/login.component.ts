@@ -9,6 +9,7 @@ import { User } from '../models/user.model';
 
 // function to initialize plugins which are out of Angular in this case from custom.min.js
 declare function init_plugins();
+// const needed to work with Google Api
 declare const gapi: any;
 
 @Component({
@@ -18,8 +19,8 @@ declare const gapi: any;
 })
 export class LoginComponent implements OnInit {
 
-  email: String;
-  rememberMe: Boolean = false;
+  email: string;
+  rememberMe: boolean = false;
 
   auth2: any;
 
