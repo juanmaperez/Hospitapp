@@ -28,6 +28,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users/users.component';
 
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
+
 
 @NgModule({
     declarations: [
@@ -41,7 +43,8 @@ import { UsersComponent } from './users/users.component';
         PagePromisesComponent,
         PageRxjsComponent,
         ProfileComponent,
-        UsersComponent
+        UsersComponent,
+        ModalUploadComponent,
     ],
     exports: [
         DashboardComponent,

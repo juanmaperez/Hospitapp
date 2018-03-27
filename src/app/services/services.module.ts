@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 
+import { ModalUploadService } from './../components/modal-upload/modal-upload.service';
+
+
 import {
   SettingsService,
   SidebarService,
@@ -27,6 +30,7 @@ import {
     UserService,
     AuthGuard,
     UploadFileService,
+    ModalUploadService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

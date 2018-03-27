@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 
-import swal from 'sweetalert2';
-
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+
+import swal from 'sweetalert2';
 
 @Injectable()
 export class UserService {
@@ -122,8 +122,10 @@ export class UserService {
 
     return this.http.put(url, user)
       .map((res: any) => {
-        this.user = res.user;
-        this.saveStorage( this.user._id, this.user);
+        if (user._id === this.user._id) {
+          this.user = res.user;
+          this.saveStorage( this.user._id, this.user);
+        }
         swal('Cool', 'User updated successfully', 'success');
         return true;
       });
@@ -136,8 +138,8 @@ export class UserService {
   */
   getUsers(from: number = 0) {
     const url = `${URL_SERVER}/users?from=${from}`;
-
     return this.http.get(url);
+
   }
 
   /*
@@ -155,13 +157,7 @@ export class UserService {
   * @params: term:string
   * @return: Observable<Users[]>
   */
-
   deleteUser(id: string) {
-    if (this.user._id  === id) {
-      swal('Error deleting user', 'Delete your own user not allowed', 'warning');
-      return;
-    }
-
     const url = `${URL_SERVER}/users/${id}`;
     return this.http.delete(url);
   }

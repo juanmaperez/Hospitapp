@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
   * @return: void()
   */
   addImage( file: File) {
-    if (! file) {
+    if (!file) {
       this.file = null;
       return;
     }
@@ -60,12 +60,13 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
+    this.file = file;
+
     const reader = new FileReader();
     const imageTemp = reader.readAsDataURL(file);
 
     reader.onloadend = () => this.fileImageUrl = reader.result;
 
-    this.file = file;
   }
 
   /* This function connects with the uploader service and uploads the image in the preview

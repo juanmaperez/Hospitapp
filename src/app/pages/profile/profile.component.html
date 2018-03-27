@@ -33,7 +33,7 @@
                 <h6 class="card-subtitle">{{ user.name }}</h6>
                     <img *ngIf="!file; else noFile" style="width:100%" [src]="user.img | image" alt="user profile">
                     <ng-template #noFile>
-                        <img style="max-width:100%" [src]="fileImageUrl" alt="user profile">
+                        <img *ngIf="fileImageUrl" style="max-width:100%" [src]="fileImageUrl" alt="user profile">
                     </ng-template>
                   <br>
                   <br>

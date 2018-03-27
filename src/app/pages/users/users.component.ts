@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 
 import swal from 'sweetalert2';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 
 @Component({
@@ -21,11 +22,17 @@ export class UsersComponent implements OnInit {
   loading: boolean;
 
   constructor (
-    public _userService: UserService
+    public _userService: UserService,
+    public _modalUploadService: ModalUploadService,
   ) { }
 
   ngOnInit() {
     this.getUsers();
+    this._modalUploadService.notification.subscribe(() => this.getUsers());
+  }
+
+  showModal(id) {
+    this._modalUploadService.showModal('users', id);
   }
 
   getUsers() {
@@ -39,7 +46,7 @@ export class UsersComponent implements OnInit {
   }
 
   countFromChange ( number: number) {
-    if (this.from >= this.totalUsers || this.from < 0 ) {
+    if (this.from > this.totalUsers || this.from < 0 ) {
       return;
     }
     this.from += number;
@@ -61,10 +68,33 @@ export class UsersComponent implements OnInit {
 
   deleteUser(user: User) {
     const id = user._id;
-    this._userService.deleteUser(id)
-      .subscribe((res: any) => {
-        const userDeleted = res.user;
-        swal('User' + userDeleted.username, 'Deleted successfully', 'success' );
+
+    swal({
+      title: 'Are you sure',
+      text: 'You will delete ' + user.name,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        this._userService.deleteUser(id)
+        .subscribe((res: any) => {
+          swal('User ' + res.user.name, 'Deleted successfully', 'success' );
+        });
+      } else {
+        swal('Perfect!', `If not sure, better don't delete`, 'warning');
+      }
+    });
+
+  }
+
+  updateUser(user: User) {
+    this._userService.updateUser(user)
+      .subscribe((res) => {
+
       });
   }
 
