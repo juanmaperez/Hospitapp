@@ -52,7 +52,7 @@ export class UserService {
     return this.http.post(url, user)
       .map((res: any) => {
         this.user = res.user;
-        this.saveStorage( res.id, this.user, res.token);
+        this.saveStorage( res.user._id, this.user, res.token);
         return true;
       });
   }
@@ -67,7 +67,7 @@ export class UserService {
     return this.http.post(url, {})
     .map((res: any) => {
       this.user = res.user;
-      this.saveStorage( res.id, this.user, res.token);
+      this.saveStorage( res.user._id, this.user, res.token);
       return true;
     });
   }
