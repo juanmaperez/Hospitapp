@@ -15,6 +15,7 @@ import {
   SharedService,
   UserService,
   AuthGuard,
+  AdminGuard,
   UploadFileService, } from './services.index';
 
 
@@ -29,6 +30,7 @@ import {
     SharedService,
     UserService,
     AuthGuard,
+    AdminGuard,
     UploadFileService,
     ModalUploadService,
     {

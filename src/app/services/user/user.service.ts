@@ -13,8 +13,8 @@ import swal from 'sweetalert2';
 export class UserService {
 
   user: User;
-
   token: string;
+  menu: any;
 
   basicUrl = URL_SERVER;
 
@@ -52,7 +52,8 @@ export class UserService {
     return this.http.post(url, user)
       .map((res: any) => {
         this.user = res.user;
-        this.saveStorage( res.user._id, this.user, res.token);
+        this.menu = res.menu;
+        this.saveStorage( res.user._id, this.user, this.menu, res.token);
         return true;
       });
   }
@@ -61,14 +62,15 @@ export class UserService {
   * @params: User, boolean
   * @return: Observable
   */
-  loginGoogle(token): Observable<boolean> {
+  loginGoogle(token): Observable<void> {
     const url = `${URL_SERVER}/login/google`;
 
     return this.http.post(url, {})
     .map((res: any) => {
       this.user = res.user;
-      this.saveStorage( res.user._id, this.user, res.token);
-      return true;
+      this.menu = res.menu;
+      console.log('menu in userService', this.menu);
+      this.saveStorage( res.user._id, this.user, this.menu, res.token);
     });
   }
 
@@ -76,9 +78,10 @@ export class UserService {
   * This functions save user data into the local storage.
   * @params: id, User, token
   */
-  saveStorage( id: string, user: User, token?: string) {
+  saveStorage( id: string, user: User, menu: any, token?: string) {
     localStorage.setItem('id', id);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('menu', JSON.stringify(menu));
     if (token) {
     localStorage.setItem('token', token);
     }
@@ -95,6 +98,8 @@ export class UserService {
     console.log('checking...');
     this.token = localStorage.getItem('token');
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.menu = JSON.parse(localStorage.getItem('menu'));
+
 
     return (!!this.token) ? true : false;
   }
@@ -105,9 +110,12 @@ export class UserService {
   logOut(): void {
     this.user = null;
     this.token = null;
+    this.menu = [];
+
     localStorage.removeItem('id');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('menu');
 
     this.router.navigate(['/login']);
   }
@@ -124,7 +132,7 @@ export class UserService {
       .map((res: any) => {
         if (user._id === this.user._id) {
           this.user = res.user;
-          this.saveStorage( this.user._id, this.user);
+          this.saveStorage( this.user._id, this.user, this.menu);
         }
         swal('Cool', 'User updated successfully', 'success');
         return true;

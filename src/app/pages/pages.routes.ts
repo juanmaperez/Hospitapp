@@ -10,7 +10,9 @@ import { Graphics1Component } from './graphics1/graphics1.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
+
 import { AuthGuard } from './../services/services.index';
+import { AdminGuard } from './../services/guards/admin.guard';
 
 const pagesRoutes: Routes = [
     {
@@ -26,7 +28,7 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: PageRxjsComponent, data: {title: 'Rxjs'}},
             { path: 'profile', component: ProfileComponent, data: {title: 'Profile'}},
             // Maintenance
-            { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}},
+            { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}, canActivate: [AdminGuard] },
 
 
             { path: '', redirectTo: '/', pathMatch: 'full'},
