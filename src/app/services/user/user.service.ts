@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
+
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
@@ -30,10 +33,14 @@ export class UserService {
   createUser(user: User) {
     const url = `${this.basicUrl}/users`;
     return this.http.post(url, user)
-                .map((res: any) => {
-                  swal('Great', 'User created successfully', 'success');
-                  return res.user;
-                });
+      .map((res: any) => {
+        swal('Great', 'User created successfully', 'success');
+        return res.user;
+      })
+      .catch((err) => {
+        swal(err.error.message, err.error.errors.message, 'warning');
+        return Observable.throw(err);
+      });
   }
 
    /* This logins the user through the login page.
@@ -55,6 +62,10 @@ export class UserService {
         this.menu = res.menu;
         this.saveStorage( res.user._id, this.user, this.menu, res.token);
         return true;
+      })
+      .catch((err) => {
+        swal('Sorry!', err.error.message, 'error');
+        return Observable.throw(err);
       });
   }
 
@@ -66,12 +77,17 @@ export class UserService {
     const url = `${URL_SERVER}/login/google`;
 
     return this.http.post(url, {})
-    .map((res: any) => {
-      this.user = res.user;
-      this.menu = res.menu;
-      console.log('menu in userService', this.menu);
-      this.saveStorage( res.user._id, this.user, this.menu, res.token);
-    });
+      .map((res: any) => {
+        this.user = res.user;
+        this.menu = res.menu;
+        console.log('menu in userService', this.menu);
+        this.saveStorage( res.user._id, this.user, this.menu, res.token);
+      })
+      .catch((err) => {
+        console.log('this is the error', err);
+        swal('Sorry', err, 'error');
+        return Observable.throw(err);
+      });
   }
 
   /*
@@ -136,6 +152,10 @@ export class UserService {
         }
         swal('Cool', 'User updated successfully', 'success');
         return true;
+      })
+      .catch((err) => {
+        swal(err.error.message, err.error.errors.message, 'warning');
+        return Observable.throw(err);
       });
   }
 
