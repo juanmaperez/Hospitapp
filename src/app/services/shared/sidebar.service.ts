@@ -13,7 +13,6 @@ export class SidebarService {
 
   loadMenu() {
     this.menu = this._userService.menu;
-    console.log('menu', this.menu);
   }
 
 }

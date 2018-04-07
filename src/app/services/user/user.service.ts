@@ -26,6 +26,21 @@ export class UserService {
     public router: Router
   ) { }
 
+  updateToken() {
+    const url = `${this.basicUrl}/login/token`;
+    return this.http.get(url)
+      .map((res: any) => {
+        this.token = res.token;
+        localStorage.setItem('token', this.token);
+        return true;
+      })
+      .catch((err) => {
+        this.router.navigate(['/login']);
+        swal('Session expired', 'You must log in again', 'error');
+        return Observable.throw(err);
+      });
+  }
+
   /* This function creates a new user through the register page.
   * @params: User
   * @return: Observable
@@ -80,11 +95,10 @@ export class UserService {
       .map((res: any) => {
         this.user = res.user;
         this.menu = res.menu;
-        console.log('menu in userService', this.menu);
         this.saveStorage( res.user._id, this.user, this.menu, res.token);
+        return true;
       })
       .catch((err) => {
-        console.log('this is the error', err);
         swal('Sorry', err, 'error');
         return Observable.throw(err);
       });
@@ -115,7 +129,6 @@ export class UserService {
     this.token = localStorage.getItem('token');
     this.user = JSON.parse(localStorage.getItem('user'));
     this.menu = JSON.parse(localStorage.getItem('menu'));
-
 
     return (!!this.token) ? true : false;
   }

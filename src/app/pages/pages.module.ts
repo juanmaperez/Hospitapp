@@ -33,7 +33,6 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
 
 @NgModule({
     declarations: [
-        PagesComponent,
         DashboardComponent,
         ProgressComponent,
         Graphics1Component,
@@ -44,7 +43,6 @@ import { ModalUploadComponent } from '../components/modal-upload/modal-upload.co
         PageRxjsComponent,
         ProfileComponent,
         UsersComponent,
-        ModalUploadComponent,
     ],
     exports: [
         DashboardComponent,

@@ -15,11 +15,6 @@ import { AuthGuard } from './../services/services.index';
 import { AdminGuard } from './../services/guards/admin.guard';
 
 const pagesRoutes: Routes = [
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [AuthGuard],
-        children: [
             { path: 'dashboard', component: DashboardComponent, data: {title: 'Dashboard'}},
             { path: 'graphics', component: Graphics1Component, data: {title: 'Graphics'}},
             { path: 'progress', component: ProgressComponent, data: {title: 'Progress'}},
@@ -30,10 +25,7 @@ const pagesRoutes: Routes = [
             // Maintenance
             { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}, canActivate: [AdminGuard] },
 
-
             { path: '', redirectTo: '/', pathMatch: 'full'},
-        ]
-    }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);
