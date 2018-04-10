@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'page-rxjs',
