@@ -67,7 +67,6 @@ export class MapComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((data) => {
-      console.log(data);
       if (data) {
         marker.title = data.title;
         marker.description = data.description;

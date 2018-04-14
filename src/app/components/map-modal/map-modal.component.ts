@@ -24,7 +24,6 @@ export class MapModalComponent implements OnInit {
       'title': data.title,
       'description': data.description,
     });
-    console.log('in modalComponent', data);
   }
 
   ngOnInit() {
