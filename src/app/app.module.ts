@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { PagesModule } from './pages/pages.module';
 import { ServicesModule } from './services/services.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { APP_ROUTES } from './app.routes';
@@ -31,7 +31,8 @@ import { SharedModule } from './shared/shared.module';
     APP_ROUTES,
     FormsModule,
     ServicesModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

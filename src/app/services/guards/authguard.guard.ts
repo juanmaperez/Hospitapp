@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { UserService } from './../user/user.service';
 
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+const jwtHelper = new JwtHelperService();
 
 @Injectable()
 export class AuthGuard implements CanActivateChild {
@@ -22,9 +23,8 @@ export class AuthGuard implements CanActivateChild {
   */
   canActivateChild(): Observable<boolean> | boolean {
     const token = localStorage.getItem('token');
-    const payload = JSON.parse(atob(token.split('.')[1]));
 
-     if (this._userService.isLoggedIn() && !this.tokenExpired(payload.exp)) {
+     if (this._userService.isLoggedIn() && !jwtHelper.isTokenExpired(token)) {
       this._userService.updateToken()
         .subscribe((res) => {
           return res;
@@ -35,14 +35,5 @@ export class AuthGuard implements CanActivateChild {
       return false;
      }
   }
-
-  tokenExpired(expiresIn: number) {
-    const dateTime = new Date().getTime() / 1000;
-    if (expiresIn < dateTime) {
-        return true;
-    }
-    return false;
-}
-
 
 }

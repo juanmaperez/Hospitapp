@@ -1,0 +1,12 @@
+<agm-map (mapClick)="addMarker($event)" [latitude]="lat" [longitude]="lng" [zoom]='15'>
+  <agm-marker *ngFor='let marker of markers; let i = index' [latitude]="marker.lat" [longitude]="marker.lng">
+    <agm-info-window>
+      <h4>{{marker.title}}</h4>
+      <p>{{marker.description}}</p>
+      <div>
+        <button (click)="editMarker(marker)" class="btn btn-primary">Edit</button>
+        <button (click)="deleteMarker(i)" class="btn btn-danger">Delete</button>
+      </div>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

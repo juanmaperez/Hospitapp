@@ -24,7 +24,16 @@ export class UserService {
   constructor(
     public http: HttpClient,
     public router: Router
-  ) { }
+  ) {
+    this.getStorage();
+  }
+
+  getStorage() {
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.menu = JSON.parse(localStorage.getItem('menu'));
+    }
+  }
 
   updateToken() {
     const url = `${this.basicUrl}/login/token`;

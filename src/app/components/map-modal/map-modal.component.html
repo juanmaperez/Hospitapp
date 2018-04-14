@@ -1,0 +1,10 @@
+<form [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="Title" formControlName="title">
+  </mat-form-field>
+  <mat-form-field >
+    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+  </mat-form-field>
+  <button (click)="saveMarker()" class="btn btn-primary">Save</button>
+  <button (click)="modalClose()" class="btn btn-danger">Cancel</button>
+</form>
