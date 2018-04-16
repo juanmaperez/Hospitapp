@@ -37,6 +37,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
 
 import { environment } from '../../environments/environment';
+import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 
 
@@ -58,6 +60,8 @@ import { environment } from '../../environments/environment';
         GoogleMapsComponent,
         MapComponent,
         MapModalComponent,
+        TemplateDrivenFormsComponent,
+        ReactiveFormsComponent,
     ],
     exports: [
         DashboardComponent,

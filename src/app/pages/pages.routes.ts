@@ -1,3 +1,5 @@
+import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PagePromisesComponent } from './page-promises/page-promises.component';
@@ -24,7 +26,8 @@ const pagesRoutes: Routes = [
             { path: 'rxjs', component: PageRxjsComponent, data: {title: 'Rxjs'}},
             { path: 'profile', component: ProfileComponent, data: {title: 'Profile'}},
             { path: 'maps', component: GoogleMapsComponent, data: {title: 'Google Maps'}},
-
+            { path: 'reactive-forms', component: ReactiveFormsComponent, data: {title: 'Reactive Forms'}},
+            { path: 'template-driven-forms', component: TemplateDrivenFormsComponent, data: {title: 'Template Driven Forms'}},
             // Maintenance
             { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}, canActivate: [AdminGuard] },
 

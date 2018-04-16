@@ -18,3 +18,10 @@
 .hidden {
     display:none;
 }
+
+
+.radioButton {
+    position: static !important;
+    left:0px !important;
+    opacity: 1 !important;
+}
