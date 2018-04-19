@@ -2,31 +2,63 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-  
-              <form>
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input
-                    type="text"
-                    id="username"
-                    class="form-control">
+              <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+                <!-- start Group of FormControls userData -->
+                <div formGroupName="userData">
+                  <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                      formControlName="username"
+                      type="text"
+                      id="username"
+                      class="form-control">
+                      <span *ngIf="!mainForm.get('userData.username').valid && mainForm.get('userData.username').touched">
+                          <span *ngIf="mainForm.get('userData.username').errors['required']" class="help-block">Please enter a username</span>
+                          <span *ngIf="mainForm.get('userData.username').errors['userNameForbidden']" class="help-block">Username forbidden!</span>
+                      </span>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">email</label>
+                    <input
+                      formControlName="email"
+                      type="text"
+                      id="email"
+                      class="form-control">
+                      <span *ngIf="!mainForm.get('userData.email').valid && mainForm.get('userData.email').touched" class="help-block">Please enter a valid email</span>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label for="email">email</label>
-                  <input
-                    type="text"
-                    id="email"
-                    class="form-control">
+                <!-- Add a formArray -->
+                <!-- We need the formArrayName to sync our formArray hobbies with the content this div -->
+                <div formArrayName="hobbies">
+                  <h4>Your Hobbies</h4>
+                  <!-- Clicking this button we create a new FormControl REQUIRED input to add a new Hobby -->
+                  <button (click)="addHobby()" class="btn btn-primary" type="button">Add hobby</button>
+                  <hr/>
+                  <div class="form-group" *ngFor="let hobbyControl of mainForm.get('hobbies').controls; let i = index">
+                      <input type="text" class="form-control" [formControlName]="i">
+                      <span *ngIf="! hobbyControl.valid && hobbyControl.touched" class="help-block">Field required</span>
+                  </div>
                 </div>
+                <!-- end Group of FormControls userData -->
                 <div class="radio" *ngFor="let gender of genders">
                   <label>
                     <input
+                      formControlName="gender"
+                      class="radioButton"
                       type="radio"
                       [value]="gender">{{ gender }}
                   </label>
+                  <span *ngIf="!mainForm.get('gender').valid && mainForm.get('gender').touched" class="help-block">Please check a gender</span>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit</button>
               </form>
+              <hr>
+              <button (click)="autoCompleteForm()" class="btn btn-warning" type="button">AutoComplete Form</button>
+              <button (click)="insertName()" class="btn btn-primary" type="button">Suggest an Username</button>
+              <button (click)="resetForm()" [disabled]="!mainForm.pristine" class="btn btn-danger" type="button">Reset</button>
+
+
+
       </div>
     </div>
   </div>

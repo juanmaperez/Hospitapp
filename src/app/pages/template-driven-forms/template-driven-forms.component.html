@@ -43,8 +43,9 @@
             <span>Reply: <strong>{{response}}</strong></span>
           </div>
           <button [disabled]="!mainForm.valid" class="btn btn-success" type="submit">Submit</button>
+          <button (click)="resetForm()" [disabled]="!mainForm.pristine" class="btn btn-danger" type="button">Reset</button>
+
         </form>
-          <button (click)="resetForm()" [disabled]="!mainForm.pristine" class="btn btn-danger">Reset</button>
 
         <hr>
         <div *ngIf="submitted" class="col-12-sm">
