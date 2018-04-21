@@ -13,6 +13,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PageRxjsComponent } from './page-rxjs/page-rxjs.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 import { AuthGuard } from './../services/services.index';
 import { AdminGuard } from './../services/guards/admin.guard';
@@ -28,6 +29,8 @@ const pagesRoutes: Routes = [
             { path: 'maps', component: GoogleMapsComponent, data: {title: 'Google Maps'}},
             { path: 'reactive-forms', component: ReactiveFormsComponent, data: {title: 'Reactive Forms'}},
             { path: 'template-driven-forms', component: TemplateDrivenFormsComponent, data: {title: 'Template Driven Forms'}},
+            { path: 'animations', component: AnimationsComponent, data: {title: 'Animations'}},
+
             // Maintenance
             { path: 'users', component: UsersComponent, data: {title: 'Manage Users'}, canActivate: [AdminGuard] },
 

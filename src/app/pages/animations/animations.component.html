@@ -1,0 +1,58 @@
+.<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+          <button (click)="onAnimate()" class="btn btn-primary">Animate!</button>
+          <button (click)="onShrink()" class="btn btn-primary">Shrink!</button>
+          <hr>
+          <div class="divAnimated" [@divState]="state" (@divState.start)="animationStarted($event)" (@divState.done)="animationEnded($event)"></div>
+          <div class="divAnimated" [@wildState]="wildState"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+
+          <input type="text" #input>
+          <button class="btn btn-primary" (click)="onAdd(input.value)">Add Item!</button>
+          <hr>
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              (click)="onDelete(item)"
+              [@listOne]
+              *ngFor="let item of list">
+              {{ item }}
+            </li>
+          </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+          <div><h2>&nbsp;</h2>
+          </div>
+          <hr>
+
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              (click)="onDelete(item)"
+              [@listTwo]
+              *ngFor="let item of list">
+              {{ item }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  

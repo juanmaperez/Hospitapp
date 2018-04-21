@@ -2,16 +2,17 @@ import { MapModalComponent } from './../components/map-modal/map-modal.component
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AgmCoreModule } from '@agm/core';
 
+// External Modules.
 import { ChartsModule } from 'ng2-charts';
+import { AgmCoreModule } from '@agm/core';
 
 // Angular Material Modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input',
+import { MatInputModule } from '@angular/material/input';
 
 import { SharedModule } from '../shared/shared.module';
 import { PipesModule } from './../pipes/pipes.module';
@@ -39,6 +40,7 @@ import { UsersComponent } from './users/users.component';
 import { environment } from '../../environments/environment';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 
 
@@ -62,6 +64,7 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
         MapModalComponent,
         TemplateDrivenFormsComponent,
         ReactiveFormsComponent,
+        AnimationsComponent,
     ],
     exports: [
         DashboardComponent,
