@@ -41,6 +41,9 @@ import { environment } from '../../environments/environment';
 import { TemplateDrivenFormsComponent } from './template-driven-forms/template-driven-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { AnimationsComponent } from './animations/animations.component';
+import { DirectivesComponent } from './directives/directives.component';
+import { BasicHighlightDirective } from './directives/main-directives/basic-highlight.directive';
+import { UnlessDirective } from './directives/main-directives/unless.directive';
 
 
 
@@ -65,6 +68,9 @@ import { AnimationsComponent } from './animations/animations.component';
         TemplateDrivenFormsComponent,
         ReactiveFormsComponent,
         AnimationsComponent,
+        DirectivesComponent,
+        BasicHighlightDirective,
+        UnlessDirective,
     ],
     exports: [
         DashboardComponent,
